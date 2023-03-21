@@ -74,6 +74,7 @@ function checkPossiblePositions(_temp)
     {
         return;
     }
+
     var tempNumber = -1000;
     for (let index = 0; index < numbersList.length; index++) {
         if (numbersList[index] > _temp)
@@ -96,6 +97,7 @@ function checkPossiblePositions(_temp)
         for (let index = 0; index < containters.length; index++) {
             if (index > lastNumberInListIndex)
             {
+                containters[index].classList.add("clickable");
                 containters[index].classList.add("posibleOption");
             }
         }
@@ -109,6 +111,7 @@ function checkPossiblePositions(_temp)
             {
                 if (numbersList[index] == -1000)
                 {
+                    containters[index].classList.add("clickable");
                     containters[index].classList.add("posibleOption");
                 }
                 else
@@ -165,8 +168,11 @@ draggables.forEach(draggable =>{
                         currentDraggable.draggable = false;
                         numbersList[parseInt(containter.id)] = currentRandomNumber;
 
-                        //Remove PosibleOption
+                    
+
+                        //Remove PosibleOption and Clickable
                         for (let index = 0; index < containters.length; index++) {
+                            containters[index].classList.remove("clickable");
                             if (containters[index].classList.contains("posibleOption"))
                             {
                                 containters[index].classList.remove("posibleOption");
@@ -176,7 +182,6 @@ draggables.forEach(draggable =>{
                         //Generate Next Number
                         /*currentRandomNumber = getRandomInt(1000);
                         currentDraggable.innerHTML = currentRandomNumber.toString();*/
-                        console.log(numbersList);
                     }
                 }
             })      
@@ -185,10 +190,24 @@ draggables.forEach(draggable =>{
 
 containters.forEach(containter => {
     containter.addEventListener("dragover", e =>{
-        e.preventDefault();
-        if (!containter.classList.contains("dragObjective") && !containter.classList.contains("busy") )
+
+        if (!containter.classList.contains("dragObjective") && !containter.classList.contains("busy"))
         {
-            containter.classList.add("dragObjective");
+            if (currentTurn != 0)
+            {
+                if (containter.classList.contains("posibleOption"))
+                {
+                    containter.classList.add("dragObjective");
+                }
+            }
+            else
+            {
+                containter.classList.add("dragObjective");
+            }
+        }
+        else if (containter.classList.contains("dragObjective"))
+        {
+            e.preventDefault();
         }
     })
 
@@ -196,6 +215,51 @@ containters.forEach(containter => {
         if (containter.classList.contains("dragObjective"))
         {
             containter.classList.remove("dragObjective");
+        }
+    })
+
+    containter.addEventListener("click", () =>{
+        if (containter.classList.contains("clickable"))
+        {
+            //Select
+                    //Snap
+                    currentDraggable.style.setProperty("--y", parseInt(containter.id));
+                    currentDraggable.classList.remove("draggable");
+                    currentDraggable.setAttribute("draggable", false);
+                    containter.classList.remove("dragObjective");
+                    containter.classList.add("busy");
+                    //Show next draggable
+                    currentTurn++;
+                    if (currentTurn >= maxTurn)
+                    {
+                        //Win
+                        console.log("You Win");
+                    }
+                    else
+                    {
+                        var nextDraggable = document.getElementById("draggable_" + currentTurn.toString());
+                        nextDraggable.classList.remove("hidden");
+                        currentDraggable = nextDraggable;
+
+                        currentDraggable.draggable = false;
+                        numbersList[parseInt(containter.id)] = currentRandomNumber;
+
+                    
+
+                        //Remove PosibleOption and Clickable
+                        for (let index = 0; index < containters.length; index++) {
+                            containters[index].classList.remove("clickable");
+                            if (containters[index].classList.contains("posibleOption"))
+                            {
+                                containters[index].classList.remove("posibleOption");
+                            }
+                        }
+
+                        //Generate Next Number
+                        /*currentRandomNumber = getRandomInt(1000);
+                        currentDraggable.innerHTML = currentRandomNumber.toString();*/
+                    }
+            
         }
     })
 })
