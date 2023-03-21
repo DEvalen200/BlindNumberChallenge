@@ -24,7 +24,7 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-bottom: 120px;
+    margin-bottom: 11vmin;
 }
 
 #title{
@@ -59,6 +59,8 @@ body{
     text-align: center;
     line-height: 1;
     color: #825E82;
+    border: 0px solid;
+    /*transition: all ease-in-out 0.1s;*/
 }
 
 .tile{
@@ -83,11 +85,16 @@ body{
     opacity: 0.5;
 }
 
+.container{
+    /*transition: all ease-in-out 0.1s;*/
+}
+
 .container.dragObjective{
     box-sizing: border-box;
     border: 3px solid;
     margin: -3px;
     border-color: orange;
+    /*transition: all ease-in-out 0.1s;*/
 }
 
 .noSelect {
@@ -126,4 +133,21 @@ body{
 
 .reloadImg{
     width: 100%
+}
+
+.noNumber{
+    background-color: springgreen;
+    font-size: 3vmin;
+    cursor: pointer;
+    transition: all ease-in-out 0.25s;
+}
+
+.noNumber:hover{
+    background-color: rgb(2, 190, 96);
+    transition: all ease-in-out 0.25s;
+}
+
+.posibleOption
+{
+    background-color: #91ae8f;
 }
