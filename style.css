@@ -1,0 +1,129 @@
+*, *::before, *::after{
+    box-sizing: border-box;
+    font-family: "DINCondensed", Arial, Helvetica, sans-serif;
+}
+
+@font-face {
+    font-family: DINCondensed;
+    src: url(DINCondensed-Bold.ttf);
+  }
+
+body{
+    background-color: #ffd2ff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-size: 5vmin;
+}
+
+#GameParent{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 120px;
+}
+
+#title{
+    padding: 2vmin;
+}
+
+#game-board-normal {
+    --grid-size-x: 1;
+    --grid-size-y: 10;
+    --cell-size-x: 20vmin;
+    --cell-size-y: 5vmin;
+    --cell-gap: 1vmin;
+    display: grid;
+    grid-template-rows: repeat(var(--grid-size-y), var(--cell-size-y));
+    grid-template-columns: repeat(var(--grid-size-x), var(--cell-size-x));
+    background-color: #825E82;
+    padding: 1vmin;
+    border-radius: 1vmin;
+    gap: var(--cell-gap);
+    position: relative;
+    width: calc((var(--cell-gap) * 2) + var(--cell-size-x));
+}
+
+#draggables{
+    margin: 4vmin;
+    width: 20vmin;
+}
+
+.cell{
+    background-color: #ae8fae;
+    border-radius: 1vmin;
+    text-align: center;
+    line-height: 1;
+    color: #825E82;
+}
+
+.tile{
+    --y: 11;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20vmin;
+    height: 5vmin;
+    background-color: aliceblue;
+    border-radius: 1vmin;
+    top: calc(var(--y) * (var(--cell-size-y) + var(--cell-gap)) + var(--cell-gap));
+    left: var(--cell-gap);
+}
+
+.draggable{
+    cursor: move;
+}
+
+.draggable.dragging{
+    opacity: 0.5;
+}
+
+.container.dragObjective{
+    box-sizing: border-box;
+    border: 3px solid;
+    margin: -3px;
+    border-color: orange;
+}
+
+.noSelect {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.hidden{
+    display: none;
+}
+
+.buttonContainer{   
+    position: relative;
+    width: 0;
+    height: 0;
+    right: 16vmin;
+    bottom: 4.1vmin;
+    
+}
+
+.reload{
+    position: absolute;
+    width: 4vmin;
+    height: 4vmin;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+    appearance: none;
+    background-color: transparent;
+}
+
+.reloadImg{
+    width: 100%
+}
