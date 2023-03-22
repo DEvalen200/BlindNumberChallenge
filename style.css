@@ -1,6 +1,6 @@
 *, *::before, *::after{
     box-sizing: border-box;
-    font-family: "DINCondensed", Arial, Helvetica, sans-serif;
+    font-family: "BebasNeue", Arial, Helvetica, sans-serif;
 }
 
 @font-face {
