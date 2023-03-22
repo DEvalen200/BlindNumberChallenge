@@ -1,6 +1,6 @@
 *, *::before, *::after{
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "DINCondensed", Arial, Helvetica, sans-serif;
 }
 
 @font-face {
@@ -106,6 +106,12 @@ body{
     margin: -3px;
     border-color: orange;
     /*transition: all ease-in-out 0.1s;*/
+}
+
+p{
+    position: absolute;
+    margin: 0;
+    overflow: hidden;
 }
 
 .noSelect {
