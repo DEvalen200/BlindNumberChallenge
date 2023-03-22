@@ -17,6 +17,7 @@ body{
     height: 100vh;
     margin: 0;
     font-size: 5vmin;
+    
 }
 
 #GameParent{
@@ -58,7 +59,10 @@ body{
     background-color: #ae8fae;
     border-radius: 1vmin;
     text-align: center;
-    line-height: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*line-height: 1;*/
     color: #825E82;
     border: 0px solid;
     /*transition: all ease-in-out 0.1s;*/
@@ -169,7 +173,7 @@ body{
         transform: scale(1.75,1.75);
     }
 
-    .cell{
+    /*.cell{
         line-height: 110%;
-    }
+    }*/
 }
