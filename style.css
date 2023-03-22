@@ -17,7 +17,7 @@ body{
     height: 100vh;
     margin: 0;
     font-size: 5vmin;
-    
+    text-size-adjust: none;
 }
 
 #GameParent{
