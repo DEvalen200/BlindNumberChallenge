@@ -19,6 +19,7 @@ body{
     font-size: 5vmin;
     -webkit-text-size-adjust: none;
     text-size-adjust: none;
+    font-weight: normal;
 }
 
 #GameParent{
