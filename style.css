@@ -108,11 +108,11 @@ body{
     /*transition: all ease-in-out 0.1s;*/
 }
 
-p{
+/*p{
     position: absolute;
     margin: 0;
     overflow: hidden;
-}
+}*/
 
 .noSelect {
     -webkit-tap-highlight-color: transparent;
