@@ -97,9 +97,9 @@ body{
     opacity: 0.5;
 }
 
-.container{
-    /*transition: all ease-in-out 0.1s;*/
-}
+/*.container{
+    transition: all ease-in-out 0.1s;
+}*/
 
 .container.dragObjective{
     box-sizing: border-box;
