@@ -17,6 +17,7 @@ body{
     height: 100vh;
     margin: 0;
     font-size: 5vmin;
+    -webkit-text-size-adjust: none;
     text-size-adjust: none;
 }
 
@@ -65,6 +66,8 @@ body{
     /*line-height: 1;*/
     color: #825E82;
     border: 0px solid;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
     /*transition: all ease-in-out 0.1s;*/
 }
 
@@ -80,6 +83,8 @@ body{
     border-radius: 1vmin;
     top: calc(var(--y) * (var(--cell-size-y) + var(--cell-gap)) + var(--cell-gap));
     left: var(--cell-gap);
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
 }
 
 .draggable{
