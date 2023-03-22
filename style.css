@@ -70,6 +70,7 @@ body{
     -webkit-text-size-adjust: none;
     text-size-adjust: none;
     height: 100%;
+    font-weight: normal;
     /*transition: all ease-in-out 0.1s;*/
 }
 
@@ -87,6 +88,7 @@ body{
     left: var(--cell-gap);
     -webkit-text-size-adjust: none;
     text-size-adjust: none;
+    font-weight: normal;
 }
 
 .draggable{
