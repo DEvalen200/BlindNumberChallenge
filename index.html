@@ -22,6 +22,16 @@
             <div class="cell container noSelect clickable" id="7">8</div>
             <div class="cell container noSelect clickable" id="8">9</div>
             <div class="cell container noSelect clickable" id="9">10</div>
+            <div class="cell container noSelect clickable" id="10">11</div>
+            <div class="cell container noSelect clickable" id="11">12</div>
+            <div class="cell container noSelect clickable" id="12">13</div>
+            <div class="cell container noSelect clickable" id="13">14</div>
+            <div class="cell container noSelect clickable" id="14">15</div>
+            <div class="cell container noSelect clickable" id="15">16</div>
+            <div class="cell container noSelect clickable" id="16">17</div>
+            <div class="cell container noSelect clickable" id="17">18</div>
+            <div class="cell container noSelect clickable" id="18">19</div>
+            <div class="cell container noSelect clickable" id="19">20</div>
             <div class="tile draggable noSelect " id="draggable_0" draggable="true">-</div>
             <div class="tile draggable noSelect noNumber hidden" id="draggable_1" draggable="true">Generate Number</div>
             <div class="tile draggable noSelect noNumber hidden" id="draggable_2" draggable="true">Generate Number</div>
@@ -32,10 +42,18 @@
             <div class="tile draggable noSelect noNumber hidden" id="draggable_7" draggable="true">Generate Number</div>
             <div class="tile draggable noSelect noNumber hidden" id="draggable_8" draggable="true">Generate Number</div>
             <div class="tile draggable noSelect noNumber hidden" id="draggable_9" draggable="true">Generate Number</div>
+            <div class="result hidden" id="result">-</div>
         </div>
         <div class="buttonContainer noSelect">
             <button class="reload" id="reloadButton" onclick="reload()"> <img src="reload.png" alt="Reload Icon" class="reloadImg"></button>
+            <button class="levelButton veryEasy" id="veryEasyButton" onclick="changeLevel(2)">2</button>
+            <button class="levelButton easy" id="easyButton" onclick="changeLevel(5)">5</button>
+            <button class="levelButton normal" id="normalButton" onclick="changeLevel(10)">10</button>
+            <button class="levelButton hard" id="hardButton" onclick="showInstructions()">?</button>
         </div>
+    </div>
+    <div class="helper hidden" id="instructionsHelper">
+        <div id="instructions" class="noSelect"><p>R - Reload</p><p>Space - Generate Number</p></div>
     </div>
 </body>
 </html>

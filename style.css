@@ -54,12 +54,37 @@ body{
     border-radius: 1vmin;
     gap: var(--cell-gap);
     position: relative;
-    width: calc((var(--cell-gap) * 2) + var(--cell-size-x));
+    width: calc((var(--cell-gap) * 2 ) + (var(--cell-gap) * (var(--grid-size-x) - 1)) + (var(--cell-size-x) * var(--grid-size-x)));
 }
 
 #draggables{
     margin: 4vmin;
     width: 20vmin;
+}
+
+#instructions{
+    position: absolute;
+    font-size: 3vmin;
+    left: 13vmin;
+    bottom: 10.9vmin;
+    width: 30vmin;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0vmin;
+}
+
+#instructions p{
+    margin: 0;
+
+    width: 100%;
+}
+
+.helper{
+    width: 0;
+    height: 0;
+    position: relative;
 }
 
 .cell{
@@ -94,6 +119,18 @@ body{
     -webkit-text-size-adjust: none;
     text-size-adjust: none;
     font-weight: normal !important;
+}
+
+.result{
+    --y: 10;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20vmin;
+    height: 5vmin;
+    top: calc(var(--y) * (var(--cell-size-y) + var(--cell-gap)) + var(--cell-gap) + 0.5vmin);
+    left: var(--cell-gap);
 }
 
 .draggable{
@@ -145,19 +182,75 @@ body{
     
 }
 
-.reload{
+.levelButton{
     position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 4vmin;
     height: 4vmin;
     padding: 0;
     border: none;
+    padding: 1vmin;
+    border-radius: 1vmin;
     cursor: pointer;
     appearance: none;
-    background-color: transparent;
+    font-size: 3vmin;
+}
+
+.veryEasy{
+    background-color: rgb(78, 235, 182);
+    bottom: 16vmin;
+    color: rgb(17, 80, 59);
+}
+
+.veryEasyAdapted{
+    bottom: 6vmin;
+    right: 1vmin;
+}
+
+.easy{
+    background-color:rgb(100, 238, 100);
+    bottom: 11vmin;
+    color: rgb(27, 70, 27);
+}
+
+.easyAdapted{
+    bottom: 1vmin;
+    right: 1vmin;
+}
+
+.normal{
+    background-color:darkorange;
+    bottom: 6vmin;
+    color: rgb(83, 46, 0);
+}
+
+.hard{
+    background-color:rgb(24, 24, 24);
+    bottom: 1vmin;
+    color: aliceblue;
+}
+
+.reload{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 4vmin;
+    height: 4vmin;
+    padding: 0;
+    border: none;
+    background-color: #ff9191;
+    padding: 1vmin;
+    border-radius: 1vmin;
+    cursor: pointer;
+    appearance: none;
 }
 
 .reloadImg{
-    width: 100%
+    position: relative;
+    width: 2.75vmin;
 }
 
 .noNumber{
@@ -188,6 +281,10 @@ body{
     color: #83ad81;
 }
 
+.lost{
+    background-color: #ff9191;
+}
+
 @media (max-aspect-ratio: 1/1) {
     #GameParent{
         transform: scale(1.75,1.75);
@@ -199,5 +296,9 @@ body{
 
     *, *::before, *::after{
         font-family: "BebasNeue", Arial, Helvetica, sans-serif;
+    }
+
+    #instructions{
+        display: none;
     }
 }

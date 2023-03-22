@@ -1,20 +1,76 @@
 const draggables = document.querySelectorAll(".draggable");
-const containters = document.querySelectorAll(".container");
+const containersTemp = document.querySelectorAll(".container");
+const gameBoard = document.getElementById("game-board-normal");
+const resultText = document.getElementById("result");
+const instructionsHelper = document.getElementById("instructionsHelper");
+
+const veryEasyButton = document.getElementById("veryEasyButton");
+const easyButton = document.getElementById("easyButton");
 
 var currentTurn = 0;
-var maxTurn = 10;
+var maxTurn = parseInt(localStorage.getItem("maxTurn")) || 10;
 var currentDraggable;
 
+var test = 0;
+    
+var canGenerateNextNumber = false;
+    
 var currentRandomNumber;
 const numbersList = Array(maxTurn)//[-1000,-1000,-1000,-1000,-1000,-1000,-1000,-1000,-1000,-1000,-1000,-1000,-1000,-1000,-1000,-1000,-1000,-1000,-1000,-1000,];
+var containers = Array();
 
-for (index = 0; index < numbersList.length; index++) {
-    numbersList[index] = -1000;
+start();
+
+function start()
+{
+
+    if (maxTurn < 5)
+    {
+        veryEasyButton.classList.add("veryEasyAdapted");
+        easyButton.classList.add("easyAdapted");
+    }
+
+    for (let index = 0; index < containersTemp.length; index++) {
+        if(index >= maxTurn)
+        {
+            if (!containersTemp[index].classList.contains("hidden"))
+            {
+                containersTemp[index].classList.add("hidden");
+            }
+
+        }
+        else
+        {
+            if (containersTemp[index].classList.contains("hidden"))
+            {
+                containersTemp[index].classList.remove("hidden");
+            }
+        }
+    }
+    
+
+    for (let index = 0; index < containersTemp.length; index++) {
+        if (!containersTemp[index].classList.contains("hidden"))
+        {
+            containers.push(containersTemp[index]);
+        }
+    }
+    
+    gameBoard.style.setProperty('--grid-size-y', +maxTurn);
+    resultText.style.setProperty("--y", +maxTurn);
+
+    for (let index = 0; index < draggables.length; index++) {
+        draggables[index].style.setProperty("--y", +maxTurn+1);
+    }
+    
+    for (index = 0; index < numbersList.length; index++) {
+        numbersList[index] = -1000;
+    }
+    
+    currentDraggable = document.getElementById("draggable_0");
+    currentRandomNumber = getRandomInt(1000);
+    currentDraggable.innerHTML = currentRandomNumber.toString(); 
 }
-
-currentDraggable = document.getElementById("draggable_0");
-currentRandomNumber = getRandomInt(1000);
-currentDraggable.innerHTML = currentRandomNumber.toString();
 
 function reload()
 {
@@ -29,17 +85,22 @@ function getRandomInt(max) {
     }
 
 
+    /*temp = test;
+    test++;*/
+
     //Check possible positions
     checkPossiblePositions(temp);
-    if (checkIfLose())
+    if (checkIfLose() && currentTurn != 0)
     {
-        console.log("You Lost");
+        lose();
     }
     else
     {
         currentDraggable.draggable = true;
     }
     
+    canGenerateNextNumber = false;
+
     return temp;
   }
 
@@ -49,10 +110,10 @@ function checkIfLose()
 
     var possibleOptions = new Array();
 
-    for (let index = 0; index < containters.length; index++) {
-        if (containters[index].classList.contains("posibleOption"))
+    for (let index = 0; index < containers.length; index++) {
+        if (containers[index].classList.contains("posibleOption"))
         {
-            possibleOptions.push(containters[index]);
+            possibleOptions.push(containers[index]);
         }
         
     }
@@ -94,11 +155,11 @@ function checkPossiblePositions(_temp)
             }
         }
 
-        for (let index = 0; index < containters.length; index++) {
+        for (let index = 0; index < containers.length; index++) {
             if (index > lastNumberInListIndex)
             {
-                containters[index].classList.add("clickable");
-                containters[index].classList.add("posibleOption");
+                containers[index].classList.add("clickable");
+                containers[index].classList.add("posibleOption");
             }
         }
     }
@@ -106,13 +167,13 @@ function checkPossiblePositions(_temp)
     {
         var tempIndex = numbersList.indexOf(tempNumber);
     
-        for (let index = 9; index < numbersList.length; index--) {
+        for (let index = numbersList.length-1; index < numbersList.length; index--) {
             if (index < tempIndex)
             {
                 if (numbersList[index] == -1000)
                 {
-                    containters[index].classList.add("clickable");
-                    containters[index].classList.add("posibleOption");
+                    containers[index].classList.add("clickable");
+                    containers[index].classList.add("posibleOption");
                 }
                 else
                 {
@@ -122,8 +183,61 @@ function checkPossiblePositions(_temp)
         }
 
     }
-
 }
+
+function lose()
+{
+    console.log("You Lost");
+    currentDraggable.classList.add("lost");
+    resultText.classList.remove("hidden");
+    resultText.innerHTML = "YOU LOST"
+}
+
+function win()
+{
+    resultText.classList.remove("hidden");
+    resultText.innerHTML = "YOU WON!"
+    console.log("You Win");
+}
+
+function changeLevel(maxLevelTurn)
+{
+    localStorage.setItem("maxTurn", maxLevelTurn);
+    reload();
+    //start();
+}
+
+function showInstructions()
+{
+    if (instructionsHelper.classList.contains("hidden"))
+    {
+        instructionsHelper.classList.remove("hidden");
+    }
+    else
+    {
+        instructionsHelper.classList.add("hidden");
+    }
+}
+
+document.body.onkeyup = function(e) {
+    if (e.key == " " ||
+        e.code == "Space" ||      
+        e.keyCode == 32      
+    ) {
+      if (canGenerateNextNumber)
+      {
+        currentDraggable.classList.remove("noNumber");
+        currentRandomNumber = getRandomInt(1000);
+        currentDraggable.innerHTML = currentRandomNumber.toString();
+      }
+    }
+    else if (e.key == "r" ||
+    e.code == "KeyR" ||      
+    e.keyCode == 82 )
+    {
+        reload();
+    }
+  }
 
 draggables.forEach(draggable =>{
     draggable.addEventListener("dragstart", () =>{
@@ -143,7 +257,7 @@ draggables.forEach(draggable =>{
     draggable.addEventListener("dragend", () =>{
         draggable.classList.remove("dragging");
       
-        containters.forEach(containter => {
+        containers.forEach(containter => {
                 if (containter.classList.contains("dragObjective"))
                 {
                     //Snap
@@ -157,7 +271,7 @@ draggables.forEach(draggable =>{
                     if (currentTurn >= maxTurn)
                     {
                         //Win
-                        console.log("You Win");
+                        win();
                     }
                     else
                     {
@@ -171,14 +285,15 @@ draggables.forEach(draggable =>{
                     
 
                         //Remove PosibleOption and Clickable
-                        for (let index = 0; index < containters.length; index++) {
-                            containters[index].classList.remove("clickable");
-                            if (containters[index].classList.contains("posibleOption"))
+                        for (let index = 0; index < containers.length; index++) {
+                            containers[index].classList.remove("clickable");
+                            if (containers[index].classList.contains("posibleOption"))
                             {
-                                containters[index].classList.remove("posibleOption");
+                                containers[index].classList.remove("posibleOption");
                             }
                         }
 
+                        canGenerateNextNumber = true;
                         //Generate Next Number
                         /*currentRandomNumber = getRandomInt(1000);
                         currentDraggable.innerHTML = currentRandomNumber.toString();*/
@@ -188,7 +303,7 @@ draggables.forEach(draggable =>{
     })
 })
 
-containters.forEach(containter => {
+containers.forEach(containter => {
     containter.addEventListener("dragover", e =>{
 
         if (!containter.classList.contains("dragObjective") && !containter.classList.contains("busy"))
@@ -233,7 +348,7 @@ containters.forEach(containter => {
                     if (currentTurn >= maxTurn)
                     {
                         //Win
-                        console.log("You Win");
+                        win();
                     }
                     else
                     {
@@ -247,14 +362,15 @@ containters.forEach(containter => {
                     
 
                         //Remove PosibleOption and Clickable
-                        for (let index = 0; index < containters.length; index++) {
-                            containters[index].classList.remove("clickable");
-                            if (containters[index].classList.contains("posibleOption"))
+                        for (let index = 0; index < containers.length; index++) {
+                            containers[index].classList.remove("clickable");
+                            if (containers[index].classList.contains("posibleOption"))
                             {
-                                containters[index].classList.remove("posibleOption");
+                                containers[index].classList.remove("posibleOption");
                             }
                         }
 
+                        canGenerateNextNumber = true;
                         //Generate Next Number
                         /*currentRandomNumber = getRandomInt(1000);
                         currentDraggable.innerHTML = currentRandomNumber.toString();*/
