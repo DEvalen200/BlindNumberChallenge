@@ -8,6 +8,7 @@ const veryEasyButton = document.getElementById("veryEasyButton");
 const easyButton = document.getElementById("easyButton");
 
 const madeBy = document.getElementById("madeBy");
+const moreGames = document.getElementById("moreGames");
 
 var currentTurn = 0;
 var maxTurn = parseInt(localStorage.getItem("maxTurn")) || 10;
@@ -307,6 +308,10 @@ draggables.forEach(draggable =>{
 
 madeBy.addEventListener("click", () =>{
     window.open("https://twitter.com/dev_valen", '_blank').focus();
+})
+
+moreGames.addEventListener("click", () =>{
+    window.open("https://play.google.com/store/apps/developer?id=DEValen", '_blank').focus();
 })
 
 containers.forEach(containter => {
