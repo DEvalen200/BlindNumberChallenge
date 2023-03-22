@@ -8,6 +8,11 @@
     src: url(DINCondensed-Bold.ttf);
   }
 
+@font-face {
+    font-family: BebasNeue;
+    src: url(BebasNeue-Regular.ttf);
+}
+
 body{
     background-color: #ffd2ff;
     display: flex;
@@ -191,4 +196,8 @@ body{
     /*.cell{
         line-height: 110%;
     }*/
+
+    *, *::before, *::after{
+        font-family: "BebasNeue", Arial, Helvetica, sans-serif;
+    }
 }
