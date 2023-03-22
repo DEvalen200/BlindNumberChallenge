@@ -178,7 +178,7 @@ body{
         transform: scale(1.75,1.75);
     }
 
-    .cell{
+    /*.cell{
         line-height: 110%;
-    }
+    }*/
 }
