@@ -28,12 +28,6 @@ body{
     transform: scale(1,1);
 }
 
-@media (max-aspect-ratio: 1/1) {
-    #GameParent{
-        transform: scale(1.75,1.75);
-    }
-}
-
 #title{
     padding: 2vmin;
 }
@@ -168,4 +162,14 @@ body{
 .clickable:hover{
     background-color: #9cce99;
     color: #83ad81;
+}
+
+@media (max-aspect-ratio: 1/1) {
+    #GameParent{
+        transform: scale(1.75,1.75);
+    }
+
+    .cell{
+        line-height: 110%;
+    }
 }
