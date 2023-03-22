@@ -7,6 +7,8 @@ const instructionsHelper = document.getElementById("instructionsHelper");
 const veryEasyButton = document.getElementById("veryEasyButton");
 const easyButton = document.getElementById("easyButton");
 
+const madeBy = document.getElementById("madeBy");
+
 var currentTurn = 0;
 var maxTurn = parseInt(localStorage.getItem("maxTurn")) || 10;
 var currentDraggable;
@@ -301,6 +303,10 @@ draggables.forEach(draggable =>{
                 }
             })      
     })
+})
+
+madeBy.addEventListener("click", () =>{
+    window.open("https://twitter.com/dev_valen", '_blank').focus();
 })
 
 containers.forEach(containter => {
