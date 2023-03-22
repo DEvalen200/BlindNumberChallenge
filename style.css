@@ -170,7 +170,7 @@ body{
 
 @media (max-aspect-ratio: 1/1) {
     #GameParent{
-        /*transform: scale(1.75,1.75);*/
+        transform: scale(1.75,1.75);
     }
 
     .cell{
