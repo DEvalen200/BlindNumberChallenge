@@ -19,7 +19,7 @@ body{
     font-size: 5vmin;
     -webkit-text-size-adjust: none;
     text-size-adjust: none;
-    font-weight: normal;
+    font-weight: normal !important;
 }
 
 #GameParent{
@@ -70,7 +70,7 @@ body{
     -webkit-text-size-adjust: none;
     text-size-adjust: none;
     height: 100%;
-    font-weight: normal;
+    font-weight: normal !important;
     /*transition: all ease-in-out 0.1s;*/
 }
 
@@ -88,7 +88,7 @@ body{
     left: var(--cell-gap);
     -webkit-text-size-adjust: none;
     text-size-adjust: none;
-    font-weight: normal;
+    font-weight: normal !important;
 }
 
 .draggable{
