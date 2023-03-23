@@ -9,6 +9,7 @@ const easyButton = document.getElementById("easyButton");
 
 const madeBy = document.getElementById("madeBy");
 const moreGames = document.getElementById("moreGames");
+const privacy = document.getElementById("privacyPolicy");
 
 var currentTurn = 0;
 var maxTurn = parseInt(localStorage.getItem("maxTurn")) || 10;
@@ -312,6 +313,10 @@ madeBy.addEventListener("click", () =>{
 
 moreGames.addEventListener("click", () =>{
     window.open("https://play.google.com/store/apps/developer?id=DEValen", '_blank').focus();
+})
+
+privacy.addEventListener("click", () =>{
+    window.open("./privacy-policy.html", '_blank').focus();
 })
 
 containers.forEach(containter => {

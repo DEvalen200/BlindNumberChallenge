@@ -101,6 +101,14 @@ body{
     cursor: pointer;
 }
 
+#privacyPolicy{
+    position: absolute;
+    bottom: 0;
+    margin: 0;
+    font-size: 2vmin;
+    cursor: pointer;
+}
+
 .helper{
     width: 0;
     height: 0;
@@ -304,6 +312,8 @@ body{
 .lost{
     background-color: #ff9191;
 }
+
+
 
 @media (max-aspect-ratio: 1/1) {
     #GameParent{
